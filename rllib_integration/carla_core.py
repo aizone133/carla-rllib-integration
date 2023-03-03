@@ -151,7 +151,7 @@ class CarlaCore:
         self.tm_port = 8080
         while is_used(self.tm_port):
             print("Traffic manager's port " + str(self.tm_port) + " is already being used. Checking the next one")
-            tm_port += 1
+            self.tm_port += 1
         print("Traffic manager connected to port " + str(self.tm_port))
 
         self.traffic_manager = self.client.get_trafficmanager(self.tm_port)

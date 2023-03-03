@@ -8,6 +8,7 @@
 
 import math
 import numpy as np
+import matplotlib.pyplot as plt
 from gym.spaces import Box, Discrete
 
 import carla
@@ -131,7 +132,7 @@ class DQNExperiment(BaseExperiment):
             self.prev_image_2 = self.prev_image_1
 
         images = image
-
+        
         if self.frame_stack >= 2:
             images = np.concatenate([self.prev_image_0, images], axis=2)
         if self.frame_stack >= 3 and images is not None:
@@ -142,6 +143,12 @@ class DQNExperiment(BaseExperiment):
         self.prev_image_2 = self.prev_image_1
         self.prev_image_1 = self.prev_image_0
         self.prev_image_0 = image
+        
+        # fig, ax = plt.subplots(4, 1)
+        # for i in range(4):
+        #     #image = plt.imread(images[i])
+        #     ax[i].imshow(images[:, :, i:i+3])
+        # plt.show()
 
         return images, {}
 
